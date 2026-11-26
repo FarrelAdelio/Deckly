@@ -4,12 +4,6 @@
 
 **A simple, tidy, and comfortable taskboard in your Chrome side panel.**
 
-[![License: MIT](https://img.shields.io/badge/License-MIT-blue.svg)](LICENSE)
-[![Manifest V3](https://img.shields.io/badge/Manifest-V3-4285F4?logo=googlechrome&logoColor=white)](#compatibility)
-[![Status](https://img.shields.io/badge/Status-Active-success)](#features)
-
-[Features](#features) · [Installation](#installation) · [Usage](#usage) · [Project Structure](#project-structure) · [Compatibility](#compatibility)
-
 </div>
 
 <p align="center">
@@ -37,7 +31,7 @@ Follow these steps to install **Deckly** locally in Google Chrome:
    - Click the green **`<> Code`** button and select **Download ZIP**.
 
    <p align="center">
-     <img src="assets/download-zip.png" alt="Click Code and select Download ZIP on GitHub" width="100%" />
+     <img src="assets/load unpacked image" alt="Click Code and select Download ZIP on GitHub" width="100%" />
    </p>
 
 2. **Extract All**
