@@ -1,4 +1,4 @@
-// Deckly — service worker
+// Deckly — service workers
 const KEY = 'deckly';
 const NKEY = 'deckly_notified';
 
