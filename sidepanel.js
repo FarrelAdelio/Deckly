@@ -40,7 +40,7 @@ function fmtDue(s) {
 }
 function localDT(d) { return `${iso(d)}T${String(d.getHours()).padStart(2, '0')}:${String(d.getMinutes()).padStart(2, '0')}`; }
 function fmtRemind(s) { const d = new Date(s); return `${MONTHS[d.getMonth()]} ${d.getDate()}, ${String(d.getHours()).padStart(2, '0')}:${String(d.getMinutes()).padStart(2, '0')}`; }
-// 
+
 const REPEAT = { none: 'Does not repeat', daily: 'Every day', weekly: 'Every week', monthly: 'Every month', yearly: 'Every year' };
 const PRIO = [['No priority', ''], ['Low', 'p1'], ['Medium', 'p2'], ['High', 'p3']];
 
@@ -124,7 +124,7 @@ async function removeAnimated(id) {
 function seed() {
   return {
     tasks: [{ id: 'a', title: 'Enjoy your day!', desc: '', parent: null }],
-    settings: { theme: 'auto', pinned: true, compact: false, showDone: false }
+    settings: { theme: 'auto', pinned: true, showDone: false }
   };
 }
 async function load() {
@@ -133,7 +133,7 @@ async function load() {
   const oldDummy = state.tasks.some(t => t.id === 'a' && t.title === 'Desain taskboard Chrome') ||
     (state.tasks.length === 2 && state.tasks[0].id === 'a' && state.tasks[0].title === 'Task 1' && state.tasks[1].id === 'b' && state.tasks[1].title === 'Sub task 1');
   if (oldDummy) { state.tasks = seed().tasks; }
-  state.settings = Object.assign({ theme: 'auto', pinned: true, compact: false, showDone: false }, state.settings);
+  state.settings = Object.assign({ theme: 'auto', pinned: true, showDone: false }, state.settings);
   state.tasks = state.tasks.filter(t => t.title && t.title.trim()).map(t => { delete t.fresh; return t; });
   if (!d[KEY]) save();
 }
@@ -179,7 +179,6 @@ function remove(id) {
 }
 function newTask(parent = null) {
   const t = { id: uid(), title: '', desc: '', parent, fresh: true };
-  state.settings.compact = false;
   if (parent) {
     let idx = state.tasks.indexOf(get(parent));
     while (state.tasks[idx + 1]?.parent === parent) idx++;
@@ -226,8 +225,8 @@ function actionsHTML(t) {
   </div>`;
 }
 function rowHTML(t, isSub) {
-  const s = sel === t.id, compact = state.settings.compact;
-  const showDesc = !compact && (t.desc || s);
+  const s = sel === t.id;
+  const showDesc = t.desc || s;
   return `<div class="task ${isSub ? 'sub' : ''} ${s ? 'sel' : ''} ${t.done ? 'done' : ''}" data-id="${t.id}">
     <button class="check" data-act="toggle" aria-label="Mark as completed">${t.done ? svg('check', 10, 3) : ''}</button>
     <div class="body">
@@ -245,9 +244,7 @@ function render() {
   let h = '';
   for (const t of active) {
     h += rowHTML(t, false);
-    if (!state.settings.compact) {
-      kids(t.id).filter(k => !k.done).forEach(k => h += rowHTML(k, true));
-    }
+    kids(t.id).filter(k => !k.done).forEach(k => h += rowHTML(k, true));
   }
   list.innerHTML = h || `<div class="empty">No tasks yet.<br>Add your first one above.</div>`;
 
@@ -258,8 +255,6 @@ function render() {
       <span class="t">${esc(t.title)}</span>
       <button class="icon-btn del" data-act="del" title="Delete">${svg('trash', 14)}</button></div>`).join('');
   $('#footer').classList.toggle('open', !!state.settings.showDone);
-  $('#btn-compact').classList.toggle('on', !!state.settings.compact);
-  $('#btn-pin').classList.toggle('on', !!state.settings.pinned);
   for (const id of animIn) expand(document.querySelector(`#list .task[data-id="${id}"], #done-list .done-row[data-id="${id}"]`));
   animIn.clear(); selAnim = null;
 }
@@ -445,15 +440,9 @@ function headerMenu() {
 function bindEvents() {
   $('#logo').innerHTML = svg('panel', 15);
   $('#plus').innerHTML = svg('plus', 14);
-  $('#btn-pin').innerHTML = svg('pin', 14);
-  $('#btn-close').innerHTML = svg('x', 15);
-  $('#btn-compact').innerHTML = svg('expand', 14);
   $('#btn-more').innerHTML = svg('more', 15);
   $('#chev').innerHTML = svg('chev', 15);
 
-  $('#btn-close').onclick = () => window.close();
-  $('#btn-pin').onclick = () => { state.settings.pinned = !state.settings.pinned; commit(); };
-  $('#btn-compact').onclick = () => { state.settings.compact = !state.settings.compact; commit(); if (!REDUCE) $('#list').animate([{ opacity: .35 }, { opacity: 1 }], { duration: 260, easing: 'ease-out' }); };
   $('#btn-more').onclick = e => { if (pop?.anchor === e.currentTarget) return closePop(); showPop(e.currentTarget, headerMenu()); };
   $('#done-toggle').onclick = () => { state.settings.showDone = !state.settings.showDone; commit(); };
 

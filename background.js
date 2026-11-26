@@ -1,4 +1,4 @@
-// Deckly — service workers
+// Deckly — service worker
 const KEY = 'deckly';
 const NKEY = 'deckly_notified';
 
@@ -36,17 +36,5 @@ chrome.alarms.onAlarm.addListener(async (a) => {
   if (changed) {
     for (const k of Object.keys(notified)) if (now - notified[k] > 7 * 864e5) delete notified[k];
     await chrome.storage.local.set({ [NKEY]: notified });
-  }
-});
-
-// Pin: when unpinned, the panel closes on tab switch
-chrome.tabs.onActivated.addListener(async ({ tabId }) => {
-  const data = await chrome.storage.local.get(KEY);
-  const pinned = data[KEY]?.settings?.pinned;
-  if (pinned === false) {
-    try {
-      await chrome.sidePanel.setOptions({ tabId, enabled: false });
-      await chrome.sidePanel.setOptions({ tabId, enabled: true, path: 'sidepanel.html' });
-    } catch (e) {}
   }
 });

@@ -262,4 +262,3 @@ input { font: inherit; color: inherit; }
 /* v3.2 - tanpa animasi pada lingkaran; fokus ke strikethrough */
 .check.pop, .check .tick path { animation: none; }
 .task.completing .title { animation-duration: .45s; animation-delay: 0s; }
-/*  */
