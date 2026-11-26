@@ -2,7 +2,7 @@
 
 A simple, tidy, and comfortable taskboard in your Chrome side panel.
 
-## Installation
+## Installation Step
 
 Follow these steps to install **Deckly** manually in Google Chrome:
 
