@@ -1,6 +1,6 @@
 <div align="center">
 
-# 📋 Deckly
+# 📌 Deckly
 
 **A simple, tidy, and comfortable taskboard in your Chrome side panel.**
 
