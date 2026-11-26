@@ -24,6 +24,5 @@ Follow these steps to install **Deckly** manually in Google Chrome:
    * Browse and select the extracted **`Deckly`** folder (make sure to select the folder containing `manifest.json`).
 
    ![Load Unpacked](assets/Load%20unpacked%20image.jpeg)
-   *(Masukkan gambar yang sudah diedit dengan kotak merah di atas. Jangan lupa ganti "path_ke_gambar_kamu/image_10.png" dengan lokasi folder penyimpanan gambarmu di GitHub, atau drag-and-drop langsung gambarnya saat mengedit di GitHub)*
 
 Once loaded, **Deckly** will appear in your extensions list and is ready to use from your Chrome side panel!
