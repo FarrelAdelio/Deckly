@@ -6,10 +6,6 @@
 
 </div>
 
-<p align="center">
-  <img src="assets/hero-banner.png" alt="Deckly taskboard running inside the Google Chrome side panel" width="100%" />
-</p>
-
 ---
 
 ## Features
@@ -30,10 +26,6 @@ Follow these steps to install **Deckly** locally in Google Chrome:
    - Open the repository at `https://github.com/FarrelAdelio/Deckly`.
    - Click the green **`<> Code`** button and select **Download ZIP**.
 
-   <p align="center">
-     <img src="assets/load unpacked image" alt="Click Code and select Download ZIP on GitHub" width="100%" />
-   </p>
-
 2. **Extract All**
    - Locate the downloaded `.zip` archive on your computer.
    - Right-click the file and select **Extract All...** (or extract it to a folder of your choice).
@@ -46,9 +38,6 @@ Follow these steps to install **Deckly** locally in Google Chrome:
    - Click **Load unpacked** in the top-left corner.
    - Select the extracted **`Deckly`** folder (the folder containing `manifest.json`).
 
-   <p align="center">
-     <img src="assets/load-unpacked.png" alt="Click Load unpacked on chrome://extensions/" width="100%" />
-   </p>
 
 > [!NOTE]
 > Make sure you select the inner **`Deckly`** folder containing `manifest.json` rather than a parent wrapper folder if Chrome reports a missing manifest.
