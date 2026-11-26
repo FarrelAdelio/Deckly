@@ -1,6 +1,6 @@
 <div align="center">
 
-<h1><img src="assets/deckly-logo.svg" width="36" height="36" alt="Deckly logo" align="absmiddle" /> Deckly</h1>
+<h1><img src="icons/deckly-logo.svg" width="36" height="36" alt="Deckly logo" align="absmiddle" /> Deckly</h1>
 
 **A simple, tidy, and comfortable taskboard in your Chrome side panel.**
 
